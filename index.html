@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indonesia Hitless</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b1b 50%, #1a1a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            width: 90%;
+            padding: 2rem;
+            gap: 4rem;
+        }
+
+        .content {
+            flex: 1;
+            text-align: center;
+            color: white;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .logo-section {
+            flex: 0 0 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .logo {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid #ef4444;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(220, 38, 38, 0.5), 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(190deg,  #ef4444 20%,#ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            color: #dc2626;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #e5e5e5;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.2s forwards;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            border: 2px solid #ef4444;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ef4444;
+            border: 2px solid #dc2626;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(220, 38, 38, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(220, 38, 38, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            background: rgba(220, 38, 38, 0.2);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            filter: hue-rotate(0deg) saturate(1.2);
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            color: #e5e5e5;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.2) 0%, rgba(220, 38, 38, 0.05) 100%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .circle-1 {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .circle-2 {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .circle-3 {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        /* Add some red glow particles */
+        .glow-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #dc2626;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #dc2626;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .particle-1 {
+            top: 15%;
+            right: 25%;
+            animation-delay: 0s;
+        }
+
+        .particle-2 {
+            top: 70%;
+            left: 15%;
+            animation-delay: 1s;
+        }
+
+        .particle-3 {
+            top: 40%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .particle-4 {
+            bottom: 30%;
+            right: 30%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .logo-section {
+                flex: none;
+                order: -1;
+            }
+
+            .logo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 200px;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Dark scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #dc2626;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-circle circle-1"></div>
+        <div class="floating-circle circle-2"></div>
+        <div class="floating-circle circle-3"></div>
+        <div class="glow-particle particle-1"></div>
+        <div class="glow-particle particle-2"></div>
+        <div class="glow-particle particle-3"></div>
+        <div class="glow-particle particle-4"></div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <h1>Indonesian Hitless Community</h1>
+            <p class="subtitle">Tingkatkan skill gaming-mu ke level dewa bareng komunitas kami!</p>
+            <p class="description">
+                Kami adalah komunitas gamer yang fokus pada gameplay tanpa terkena damage atau hit—alias hitless run. Di sini, lo bisa belajar teknik, berbagi strategi, dan push kemampuan lo buat menaklukkan game tanpa cacat.
+                Cocok banget buat lo yang suka tantangan ekstrem dan pengen buktiin skill tanpa kompromi. Gabung dan temukan teman seperjuangan, diskusiin boss patterns, dan upgrade refleks lo bareng pemain lain yang punya semangat yang sama.
+                Nggak peduli lo baru mulai atau udah veteran, selalu ada hal baru buat ditaklukkan. Let's conquer games flawlessly!
+            </p>            
+            
+            <div class="cta-buttons">
+                <a class="btn btn-primary" id="joinBtn">Join Community</a>
+                <a class="btn btn-secondary" id="learnBtn">Learn More</a>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🤝</div>
+                    <div class="feature-text">Connect</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💡</div>
+                    <div class="feature-text">Share Strategy</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <div class="feature-text">Grow Together</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="logo-section">
+            <div class="logo" id="logo">
+                <img src="Hitless_ID.png" alt="Hitless ID Logo" style="border-radius: 100%;" width="100%">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logo = document.getElementById('logo');
+            const joinBtn = document.getElementById('joinBtn');
+            const learnBtn = document.getElementById('learnBtn');
+            const features = document.querySelectorAll('.feature');
+
+            logo.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                this.style.boxShadow = '0 0 80px rgba(220, 38, 38, 0.8)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.05)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                        this.style.boxShadow = '0 0 30px rgba(220, 38, 38, 0.3)';
+                    }, 150);
+                }, 150);
+            });
+
+            joinBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(220, 38, 38, 0.6)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.marginLeft = '-10px';
+                ripple.style.marginTop = '-10px';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+
+                window.location.href = 'https://discord.gg/KBXM4HWkJ7';
+            });
+
+            learnBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                features[0].scrollIntoView({ behavior: 'smooth' });
+                window.location.href = 'https://www.teamhitless.com/';
+            });
+
+            features.forEach(feature => {
+                feature.addEventListener('mouseenter', function() {
+                    this.style.background = 'rgba(220, 38, 38, 0.2)';
+                    this.style.boxShadow = '0 10px 30px rgba(220, 38, 38, 0.3)';
+                });
+                
+                feature.addEventListener('mouseleave', function() {
+                    this.style.background = 'rgba(220, 38, 38, 0.1)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            document.addEventListener('mousemove', function(e) {
+                const circles = document.querySelectorAll('.floating-circle');
+                const particles = document.querySelectorAll('.glow-particle');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+
+                circles.forEach((circle, index) => {
+                    const speed = (index + 1) * 0.5;
+                    const xPos = (x - 0.5) * speed * 20;
+                    const yPos = (y - 0.5) * speed * 20;
+                    circle.style.transform = `translate(${xPos}px, ${yPos}px)`;
+                });
+
+                particles.forEach((particle, index) => {
+                    const speed = (index + 1) * 0.3;
+                    const xPos = (x - 0.5) * speed * 15;
+                    const yPos = (y - 0.5) * speed * 15;
+                    particle.style.transform = `translate(${xPos}px, ${yPos}px)`;
+                });
+            });
+
+            setInterval(() => {
+                logo.style.boxShadow = '0 0 50px rgba(220, 38, 38, 0.5)';
+                setTimeout(() => {
+                    logo.style.boxShadow = '0 0 30px rgba(220, 38, 38, 0.3)';
+                }, 1000);
+            }, 3000);
+        });
+
+        function revealOnScroll() {
+            const elements = document.querySelectorAll('.feature');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+    </script>
+</body>
+</html>
